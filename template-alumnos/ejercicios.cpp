@@ -5,14 +5,16 @@
 // Ejercicio 1
 
 bool esImagenValida(const imagen& img) {
-    return (img.size() > 0 && esMatriz(img) && esBinaria(img));
+	bool resp = false;
+	// TODO --> cuerpo de funcion
+    return resp;
 }
 
 // Ejercicio 2
 
 bool sonPixelesConectados(const imagen& img, const pixel& p, const pixel& q, int k) {
 	bool resp = false;
-
+	// TODO --> cuerpo de funcion
     return resp;
 }
 
