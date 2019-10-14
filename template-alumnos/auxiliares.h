@@ -12,4 +12,6 @@
 
 bool esMatriz(const imagen &A);
 bool esBinaria(const imagen &A);
-
+bool sonPixelesConectadosViniendoDe(const imagen& A, const pixel& p, const pixel& q, int k, vector<pixel> blacklist);
+bool pixelValidoEncendido(const imagen &A, const pixel& p);
+bool notIn(const vector<pixel>& list, const pixel& p);

@@ -4,16 +4,14 @@
 
 // Ejercicio 1
 
-bool esImagenValida(const imagen& img) {
-    return (img.size() > 0 && esMatriz(img) && esBinaria(img));
+bool esImagenValida(const imagen& A) {
+    return (A.size() > 0 && esMatriz(A) && esBinaria(A));
 }
 
 // Ejercicio 2
 
-bool sonPixelesConectados(const imagen& img, const pixel& p, const pixel& q, int k) {
-	bool resp = false;
-
-    return resp;
+bool sonPixelesConectados(const imagen& A, const pixel& p, const pixel& q, int k) {
+    return sonPixelesConectadosViniendoDe(A, p, q, k, {});
 }
 
 // Ejercicio 3
