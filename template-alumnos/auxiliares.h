@@ -9,3 +9,6 @@
 
 
 #endif //SOLUCION_AUXILIARES_H
+
+bool esMatriz(const imagen &A);
+bool esBinaria(const imagen &A);

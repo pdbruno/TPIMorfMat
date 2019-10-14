@@ -6,7 +6,7 @@
 
 bool esImagenValida(const imagen& img) {
 	bool resp = false;
-	// TODO --> cuerpo de funcion
+	if (img.size() > 0 && esMatriz(img) && esBinaria(img))
     return resp;
 }
 
