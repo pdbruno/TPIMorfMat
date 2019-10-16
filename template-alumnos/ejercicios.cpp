@@ -18,7 +18,30 @@ bool sonPixelesConectados(const imagen& A, const pixel& p, const pixel& q, int k
 
 float devolverPromedioAreas(const imagen &A, int k){
 	float prom = -1.0;
-	// TODO --> cuerpo de funcion
+    vector<sqPixel> regionesConRepetidos;
+    vector<sqPixel> regionesSinRepetidos;
+    vector<sqPixel> sec;
+
+    for (int i = 0; i < A.size(); ++i) {
+        for (int j = 0; j < A[0].size(); ++j) {
+            if(A[i][j] == 1){
+                sec = secuenciaDilatacionInterseccion(A, {i, j}, k);
+                regionesConRepetidos.push_back(sec[sec.size()-1]);
+            }
+        }
+    }
+    if(regionesConRepetidos.size() == 0){
+        prom = 0;
+    } else {
+        regionesSinRepetidos = quitarRepetidos(regionesConRepetidos);
+        float acum = 0;
+        for (int i = 0; i < regionesSinRepetidos.size(); ++i) {
+            acum+= regionesSinRepetidos[i].size();
+        }
+        prom = acum/regionesSinRepetidos.size();
+    }
+
+
     return prom;
 }
 
@@ -63,9 +86,15 @@ void cerrarForma(imagen &A, const imagen &B){
 // Ejercicio 6
 
 int obtenerRegionConectada(imagen &A, const pixel &semilla) {
-	int ite = 0;
-	// TODO --> cuerpo de funcion
-	return ite;
+
+    vector<sqPixel> secDilInt = secuenciaDilatacionInterseccion(A, semilla, 8);
+
+    for (int i = 0; i < A.size(); ++i) {
+        for (int j = 0; j < A[0].size(); ++j) {
+            A[i][j] = pertenece(secDilInt[secDilInt.size()-1], {i, j}) ? 1 : 0;
+        }
+    }
+    return secDilInt.size();
 }
 
 

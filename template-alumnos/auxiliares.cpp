@@ -108,6 +108,16 @@ sqPixel convertirASecuencia(const imagen &A){
     return sqA;
 }
 
+sqPixel interseccion(const sqPixel &A, const sqPixel &B){
+    sqPixel res;
+    for (int i = 0; i < A.size(); ++i) {
+        if(pertenece(B, A[i])){
+            res.push_back(A[i]);
+        }
+    }
+    return res;
+}
+
 sqPixel dilatacion(const sqPixel &A, const sqPixel &B, int n, int m){
     sqPixel res;
     sqPixel Bdesplazado;
@@ -163,4 +173,63 @@ bool contenido(const sqPixel &contenedor, const sqPixel &contenido, int n, int m
         }
     }
     return res;
+}
+bool iguales(const sqPixel &A, const sqPixel &B){
+    bool res = true;
+    if(A.size() != B.size()){
+        res = false;
+    } else {
+        for (int i = 0; i < A.size(); ++i) {
+            res &= (pertenece(B, A[i]) && pertenece(A, B[i]));
+        }
+    }
+    return res;
+}
+
+vector<sqPixel> secuenciaDilatacionInterseccion(const imagen &A, const pixel &semilla, int k){
+    vector<sqPixel> secDilInt = {{semilla}};
+    sqPixel dil;
+    sqPixel inter;
+    sqPixel sqA = convertirASecuencia(A);
+    sqPixel sqB;
+    if(k==8){
+        sqB = {{-1,-1},{-1,0},{-1,1},{0,-1},{0,0},{0,1},{1,-1},{1,0},{1,1}};
+    } else {
+        sqB = {{-1,0},{0,-1},{0,0},{0,1},{1,0}};
+    }
+    int i = 0;
+    while(i == 0 || !iguales(secDilInt[i], secDilInt[i-1])){
+        dil = dilatacion(secDilInt[i], sqB, A.size(), A[0].size());
+        inter = interseccion(dil, sqA);
+        secDilInt.push_back(inter);
+        i++;
+    }
+
+
+    return secDilInt;
+}
+
+vector<sqPixel> quitarRepetidos(const vector<sqPixel> &A){
+    vector<sqPixel> res;
+    vector<int> posRedun;
+    for (int i = 0; i < A.size(); ++i) {
+        for (int j = i+1; j < A.size(); ++j) {
+            if(iguales(A[i], A[j])){
+               posRedun.push_back(j);
+            }
+        }
+    }
+    for (int i = 0; i < A.size(); ++i) {
+        if(!perteneceInt(posRedun, i)){
+            res.push_back(A[i]);
+        }
+    }
+    return res;
+}
+bool perteneceInt(const vector<int>& list, const int& x){
+    int i = 0;
+    while (i < list.size() && list[i] != x){
+        i++;
+    }
+    return i < list.size();
 }

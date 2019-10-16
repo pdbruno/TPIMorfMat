@@ -23,3 +23,8 @@ sqPixel erosion(const sqPixel &A, const sqPixel &B, int n, int m);
 sqPixel desplazar (const sqPixel &B, const pixel &p);
 bool hayInterseccion(const sqPixel &A, const sqPixel &B);
 bool contenido(const sqPixel &contenedor, const sqPixel &contenido, int n, int m);
+sqPixel interseccion(const sqPixel &A, const sqPixel &B);
+bool iguales(const sqPixel &A, const sqPixel &B);
+vector<sqPixel> secuenciaDilatacionInterseccion(const imagen &A, const pixel &semilla, int k);
+vector<sqPixel> quitarRepetidos(const vector<sqPixel> &A);
+bool perteneceInt(const vector<int>& list, const int& x);
