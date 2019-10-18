@@ -1,6 +1,7 @@
 //
 //
 #include <cstdlib>
+#include <tuple>
 #include "definiciones.h"
 #include "auxiliares.h"
 
@@ -108,6 +109,17 @@ sqPixel convertirASecuencia(const imagen &A){
     return sqA;
 }
 
+imagen convertirAImagen(const sqPixel &A, int n, int m){
+    imagen res(n, vector<int>(m));
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            res[i][j] = pertenece(A, {i, j}) ? 1 : 0;
+        }
+    }
+    return res;
+}
+
+
 sqPixel interseccion(const sqPixel &A, const sqPixel &B){
     sqPixel res;
     for (int i = 0; i < A.size(); ++i) {
@@ -138,7 +150,6 @@ sqPixel erosion(const sqPixel &A, const sqPixel &B, int n, int m){
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < m; ++j) {
             if(pertenece(A, {i, j})) {
-
                 Bdesplazado = desplazar(B, {i, j});
                 if (contenido(A, Bdesplazado, n, m)) {
                     res.push_back({i, j});
@@ -186,10 +197,10 @@ bool iguales(const sqPixel &A, const sqPixel &B){
     return res;
 }
 
-vector<sqPixel> secuenciaDilatacionInterseccion(const imagen &A, const pixel &semilla, int k){
-    vector<sqPixel> secDilInt = {{semilla}};
-    sqPixel dil;
-    sqPixel inter;
+
+
+tuple <int, sqPixel> extraerRegion(const imagen &A, const pixel &semilla, int k){
+    sqPixel dilPrev, interPrev, dilNext, interNext;
     sqPixel sqA = convertirASecuencia(A);
     sqPixel sqB;
     if(k==8){
@@ -197,16 +208,21 @@ vector<sqPixel> secuenciaDilatacionInterseccion(const imagen &A, const pixel &se
     } else {
         sqB = {{-1,0},{0,-1},{0,0},{0,1},{1,0}};
     }
-    int i = 0;
-    while(i == 0 || !iguales(secDilInt[i], secDilInt[i-1])){
-        dil = dilatacion(secDilInt[i], sqB, A.size(), A[0].size());
-        inter = interseccion(dil, sqA);
-        secDilInt.push_back(inter);
+
+    interPrev = {semilla};
+    dilNext = dilatacion(interPrev, sqB, A.size(), A[0].size());
+    interNext = interseccion(dilNext, sqA);
+
+    int i = 1;
+    while (!iguales(interPrev, interNext)){
+        dilPrev = dilNext;
+        interPrev = interNext;
+        dilNext = dilatacion(interPrev, sqB, A.size(), A[0].size());
+        interNext = interseccion(dilNext, sqA);
         i++;
     }
 
-
-    return secDilInt;
+    return make_tuple(i, interNext);
 }
 
 vector<sqPixel> quitarRepetidos(const vector<sqPixel> &A){
@@ -226,6 +242,7 @@ vector<sqPixel> quitarRepetidos(const vector<sqPixel> &A){
     }
     return res;
 }
+
 bool perteneceInt(const vector<int>& list, const int& x){
     int i = 0;
     while (i < list.size() && list[i] != x){

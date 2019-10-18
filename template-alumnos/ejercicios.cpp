@@ -1,3 +1,4 @@
+#include <tuple>
 #include "definiciones.h"
 #include "ejercicios.h"
 #include "auxiliares.h"
@@ -20,13 +21,13 @@ float devolverPromedioAreas(const imagen &A, int k){
 	float prom = -1.0;
     vector<sqPixel> regionesConRepetidos;
     vector<sqPixel> regionesSinRepetidos;
-    vector<sqPixel> sec;
+    sqPixel region;
 
     for (int i = 0; i < A.size(); ++i) {
         for (int j = 0; j < A[0].size(); ++j) {
             if(A[i][j] == 1){
-                sec = secuenciaDilatacionInterseccion(A, {i, j}, k);
-                regionesConRepetidos.push_back(sec[sec.size()-1]);
+                region = get<1>(extraerRegion(A, {i, j}, k));
+                regionesConRepetidos.push_back(region);
             }
         }
     }
@@ -86,15 +87,12 @@ void cerrarForma(imagen &A, const imagen &B){
 // Ejercicio 6
 
 int obtenerRegionConectada(imagen &A, const pixel &semilla) {
+    int res;
+    sqPixel region;
+    tie(res, region) = extraerRegion(A, semilla, 8);
+    A = convertirAImagen(region, A.size(), A[0].size());
 
-    vector<sqPixel> secDilInt = secuenciaDilatacionInterseccion(A, semilla, 8);
-
-    for (int i = 0; i < A.size(); ++i) {
-        for (int j = 0; j < A[0].size(); ++j) {
-            A[i][j] = pertenece(secDilInt[secDilInt.size()-1], {i, j}) ? 1 : 0;
-        }
-    }
-    return secDilInt.size();
+    return res;
 }
 
 
