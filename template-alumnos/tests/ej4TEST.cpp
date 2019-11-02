@@ -15,7 +15,7 @@ bool sonLosActivos(const imagen &A, const sqPixel &sp){
     }
     sort(activosImagen.begin(),activosImagen.end());
     sqPixel sp2 = sp;
-    sort(activosImagen.begin(),activosImagen.end());
+    sort(sp2.begin(),sp2.end());
     return sp2 == activosImagen;
 }
 

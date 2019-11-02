@@ -3,9 +3,9 @@
 
 TEST(sonPixelesConectadosTest, PixelesEnDiagonalNoEstanConectadosAdy4) {
     imagen img = {
-            {1, 0},
-            {0, 1}
-    };
+		{1, 0}, 
+		{0, 1}
+	};
     pixel p = {0, 0};
     pixel q = {1, 1};
     EXPECT_FALSE(sonPixelesConectados(img, p, q, 4));
@@ -62,11 +62,11 @@ TEST(sonPixelesConectadosTest, PixelesConectadosPorMuchosPixelesVerticalesAdy4) 
 
 TEST(sonPixelesConectadosTest, PixelesConectadosPorMuchosPixelesParaTodosLadosAdy4) {
     imagen img = {
-            {0, 1, 0},
-            {1, 1, 1},
-            {0, 1, 1},
-            {0, 0, 1},
-            {0, 1, 1},
+        {0, 1, 0},
+        {1, 1, 1},
+        {0, 1, 1},
+        {0, 0, 1},
+        {0, 1, 1},
     };
     pixel p = {0, 1};
     pixel q = {4, 1};
@@ -75,8 +75,8 @@ TEST(sonPixelesConectadosTest, PixelesConectadosPorMuchosPixelesParaTodosLadosAd
 
 TEST(sonPixelesConectadosTest, PixelesEnDiagonalEstanConectadosAdy8) {
     imagen img = {
-            {0, 1},
-            {1, 0},
+        {0, 1},
+        {1, 0},
     };
     pixel p = {0, 1};
     pixel q = {1, 0};
@@ -85,9 +85,9 @@ TEST(sonPixelesConectadosTest, PixelesEnDiagonalEstanConectadosAdy8) {
 
 TEST(sonPixelesConectadosTest, PixelesSeparadosNoEstanConectadosAdy8) {
     imagen img = {
-            {1, 0},
-            {0, 0},
-            {0, 1},
+        {1, 0},
+        {0, 0},
+        {0, 1},
     };
     pixel p = {0, 1};
     pixel q = {2, 1};
@@ -96,7 +96,7 @@ TEST(sonPixelesConectadosTest, PixelesSeparadosNoEstanConectadosAdy8) {
 
 TEST(sonPixelesConectadosTest, PixelesEnAdy4EstanConectadosAdy8) {
     imagen img = {
-            {1, 1},
+        {1, 1},
     };
     pixel p = {0, 1};
     pixel q = {0, 0};
@@ -105,9 +105,9 @@ TEST(sonPixelesConectadosTest, PixelesEnAdy4EstanConectadosAdy8) {
 
 TEST(sonPixelesConectadosTest, PixelesEnCaminoAdy4EstanConectadosAdy8) {
     imagen img = {
-            {1, 1},
-            {0, 1},
-            {0, 1},
+        {1, 1},
+        {0, 1},
+        {0, 1},
     };
     pixel p = {0, 0};
     pixel q = {2, 1};
@@ -116,9 +116,9 @@ TEST(sonPixelesConectadosTest, PixelesEnCaminoAdy4EstanConectadosAdy8) {
 
 TEST(sonPixelesConectadosTest, PixelesEnCaminoAdy8EstanConectadosAdy8) {
     imagen img = {
-            {1, 0},
-            {0, 1},
-            {0, 1},
+        {1, 0},
+        {0, 1},
+        {0, 1},
     };
     pixel p = {0, 0};
     pixel q = {2, 1};
@@ -127,11 +127,11 @@ TEST(sonPixelesConectadosTest, PixelesEnCaminoAdy8EstanConectadosAdy8) {
 
 TEST(sonPixelesConectadosTest, PixelesEnCaminoLargoAdy8EstanConectadosAdy8) {
     imagen img = {
-            {1, 0, 0, 1},
-            {1, 0, 0, 1},
-            {0, 1, 0, 1},
-            {0, 1, 0, 1},
-            {0, 0, 1, 0},
+        {1, 0, 0, 1},
+        {1, 0, 0, 1},
+        {0, 1, 0, 1},
+        {0, 1, 0, 1},
+        {0, 0, 1, 0},
     };
     pixel p = {0, 0};
     pixel q = {0, 3};
@@ -140,11 +140,11 @@ TEST(sonPixelesConectadosTest, PixelesEnCaminoLargoAdy8EstanConectadosAdy8) {
 
 TEST(sonPixelesConectadosTest, PixelesEnCaminoLargoAdy8NoEstanConectadosAdy4) {
     imagen img = {
-            {1, 0, 0, 1},
-            {1, 0, 0, 1},
-            {0, 1, 0, 1},
-            {0, 1, 0, 1},
-            {0, 0, 1, 0},
+        {1, 0, 0, 1},
+        {1, 0, 0, 1},
+        {0, 1, 0, 1},
+        {0, 1, 0, 1},
+        {0, 0, 1, 0},
     };
     pixel p = {0, 0};
     pixel q = {0, 3};
@@ -153,11 +153,11 @@ TEST(sonPixelesConectadosTest, PixelesEnCaminoLargoAdy8NoEstanConectadosAdy4) {
 
 TEST(sonPixelesConectadosTest, PixelesEnCaminoLargoAdy4EstanConectadosAdy4) {
     imagen img = {
-            {1, 0, 0, 0, 0, 0, 1, 0},
-            {1, 0, 0, 1, 0, 0, 1, 1},
-            {1, 1, 0, 1, 0, 0, 0, 1},
-            {0, 1, 1, 1, 1, 1, 1, 1},
-            {1, 1, 1, 0, 0, 1, 0, 0},
+        {1, 0, 0, 0, 0, 0, 1, 0},
+        {1, 0, 0, 1, 0, 0, 1, 1},
+        {1, 1, 0, 1, 0, 0, 0, 1},
+        {0, 1, 1, 1, 1, 1, 1, 1},
+        {1, 1, 1, 0, 0, 1, 0, 0},
     };
     pixel p = {0, 0};
     pixel q = {0, 6};

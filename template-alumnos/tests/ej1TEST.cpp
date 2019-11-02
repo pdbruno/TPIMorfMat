@@ -2,7 +2,7 @@
 #include "../ejercicios.h"
 
 TEST(esImagenValidaTest, ImagenVaciaNoEsValida) {
-    imagen img = {{}};
+    imagen img;
     EXPECT_FALSE(esImagenValida(img));
 }
 

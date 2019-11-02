@@ -31,7 +31,7 @@ float devolverPromedioAreas(const imagen &A, int k){
             }
         }
     }
-    if(regionesConRepetidos.size() == 0){
+    if(regionesConRepetidos.empty()){
         prom = 0;
     } else {
         regionesSinRepetidos = quitarRepetidos(regionesConRepetidos);
