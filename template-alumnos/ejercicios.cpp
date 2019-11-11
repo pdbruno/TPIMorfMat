@@ -12,7 +12,7 @@ bool esImagenValida(const imagen& A) {
 // Ejercicio 2
 
 bool sonPixelesConectados(const imagen& A, const pixel& p, const pixel& q, int k) {
-    return sonPixelesConectadosViniendoDe(A, p, q, k, {});
+    return pixelValidoEncendido(A, p) && pixelValidoEncendido(A, q) && sonPixelesConectadosViniendoDe(A, p, q, k, {});
 }
 
 // Ejercicio 3
@@ -74,6 +74,7 @@ void cerrarForma(imagen &A, const imagen &B){
     }
 
     sqPixel dil = dilatacion(sqA, sqB, A.size(), A[0].size());
+    imagen skr = convertirAImagen(dil, A.size(), A[0].size());
     sqPixel ero = erosion(dil, sqB, A.size(), A[0].size());
 
     for (int i = 0; i < A.size(); ++i) {

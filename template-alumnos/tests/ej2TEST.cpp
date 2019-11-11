@@ -163,3 +163,56 @@ TEST(sonPixelesConectadosTest, PixelesEnCaminoLargoAdy4EstanConectadosAdy4) {
     pixel q = {0, 6};
     EXPECT_TRUE(sonPixelesConectados(img, p, q, 4));
 }
+
+TEST(sonPixelesConectadosTest, NoConectadosSiPrimerPixelEstaInactivo) {
+
+        imagen img = {{0}, {1}};
+        pixel p = {0, 0};
+        pixel q = {1, 0};
+
+    EXPECT_FALSE(sonPixelesConectados(img, p, q, 4));
+}
+
+TEST(sonPixelesConectadosTest, NoConectadosSiSegundoPixelEstaInactivo) {
+    imagen img = {{1}, {0}};
+    pixel p = {0, 0};
+    pixel q = {1, 0};
+
+    EXPECT_FALSE(sonPixelesConectados(img, p, q, 4));
+}
+
+TEST(sonPixelesConectadosTest, PixelesRomboAdy8ActivoYNoActivoNoEstanConectadosAdy8) {
+    imagen img = {
+            {0, 0, 1, 0, 0},
+            {0, 1, 0, 1, 0},
+            {1, 0, 0, 0, 1},
+            {0, 1, 0, 1, 0},
+            {0, 0, 1, 0, 0},
+    };
+    pixel p = {0, 1};
+    pixel q = {4, 2};
+
+    EXPECT_FALSE(sonPixelesConectados(img, p, q, 8));
+}
+
+TEST(sonPixelesConectadosTest, PixelesInactivosNoEstanConectadosEnAdyacencia4) {
+    imagen img = {{0}, {0}};
+    pixel p = {0, 0};
+    pixel q = {1, 0};
+
+    EXPECT_FALSE(sonPixelesConectados(img, p, q, 4));
+}
+
+TEST(sonPixelesConectadosTest, NoConectadosUnPixelNoActivadoAdy8) {
+    imagen img = {
+            {1, 0, 0, 0, 0, 0, 1, 0},
+            {1, 0, 0, 1, 0, 0, 1, 1},
+            {1, 1, 0, 1, 0, 0, 0, 1},
+            {0, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 0, 0, 1, 0, 0},
+    };
+    pixel p = {0, 1};
+    pixel q = {0, 0};
+
+    EXPECT_FALSE(sonPixelesConectados(img, p, q, 8));
+}

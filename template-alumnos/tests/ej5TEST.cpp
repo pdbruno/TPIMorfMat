@@ -63,3 +63,4 @@ TEST(cerrarFormaTest, cierreConCruz) {
 
     EXPECT_EQ(esperada, A);
 }
+
