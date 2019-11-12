@@ -42,7 +42,7 @@ add_executable(solucion ${SOURCE_FILES})
 # Agrega más opciones a la compilación.
 # -g: Hace que podamos debuggear el programa.
 # --coverage: Hace que se pueda calcular el cubrimiento de los casos de test.
-set(CMAKE_CXX_FLAGS "-g --coverage")
+set(CMAKE_CXX_FLAGS "-g -fprofile-arcs -ftest-coverage")
 # Un temita de gcov que no se lleva tan bien con CMake,
 # y entonces hay que poner esta línea.
 # Para más información, ver https://texus.me/2015/09/06/cmake-and-gcov/.

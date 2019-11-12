@@ -130,23 +130,6 @@ sqPixel interseccion(const sqPixel &A, const sqPixel &B){
     return res;
 }
 
-sqPixel quitarPixelesRepetidos(const sqPixel &A){
-    sqPixel res;
-    vector<int> posRedun;
-    for (int i = 0; i < A.size(); ++i) {
-        for (int j = i+1; j < A.size(); ++j) {
-            if(A[i] == A[j]){
-                posRedun.push_back(j);
-            }
-        }
-    }
-    for (int i = 0; i < A.size(); ++i) {
-        if(!perteneceInt(posRedun, i)){
-            res.push_back(A[i]);
-        }
-    }
-    return res;
-}
 
 sqPixel dilatacion(const sqPixel &A, const sqPixel &B, int n, int m){
     sqPixel res;
@@ -159,8 +142,7 @@ sqPixel dilatacion(const sqPixel &A, const sqPixel &B, int n, int m){
             }
         }
     }
-    res.insert( res.end(), A.begin(), A.end() );
-    return quitarPixelesRepetidos(res);
+    return res;
 }
 
 sqPixel erosion(const sqPixel &A, const sqPixel &B, int n, int m){
@@ -168,11 +150,9 @@ sqPixel erosion(const sqPixel &A, const sqPixel &B, int n, int m){
     sqPixel Bdesplazado;
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < m; ++j) {
-            if(pertenece(A, {i, j})) {
-                Bdesplazado = desplazar(B, {i, j});
-                if (contenido(A, Bdesplazado, n, m)) {
-                    res.push_back({i, j});
-                }
+            Bdesplazado = desplazar(B, {i, j});
+            if (contenido(A, Bdesplazado, n, m)) {
+                res.push_back({i, j});
             }
         }
     }
@@ -250,7 +230,7 @@ vector<sqPixel> quitarRepetidos(const vector<sqPixel> &A){
     for (int i = 0; i < A.size(); ++i) {
         for (int j = i+1; j < A.size(); ++j) {
             if(iguales(A[i], A[j])){
-               posRedun.push_back(j);
+                posRedun.push_back(j);
             }
         }
     }

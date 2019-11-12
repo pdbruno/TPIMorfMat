@@ -74,15 +74,8 @@ void cerrarForma(imagen &A, const imagen &B){
     }
 
     sqPixel dil = dilatacion(sqA, sqB, A.size(), A[0].size());
-    imagen skr = convertirAImagen(dil, A.size(), A[0].size());
     sqPixel ero = erosion(dil, sqB, A.size(), A[0].size());
-
-    for (int i = 0; i < A.size(); ++i) {
-        for (int j = 0; j < A[0].size(); ++j) {
-                A[i][j] = pertenece(ero, {i, j}) ? 1 : 0;
-            }
-    }
-
+    A = convertirAImagen(ero, A.size(), A[0].size());
 }
 
 // Ejercicio 6

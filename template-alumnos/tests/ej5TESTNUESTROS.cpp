@@ -6,38 +6,6 @@
 #include "../ejercicios.h"
 #include "../auxiliares.h"
 
-TEST(cerrarFormaTest, soloUnPixelPrendidoConElemSinCentro) {
-    imagen A = {
-            {0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0},
-            {0, 0, 1, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0},
-    };
-    imagen B = {
-            {0, 1, 0, 1, 0},
-            {1, 0, 1, 0, 1},
-            {0, 1, 0, 1, 0},
-            {1, 0, 1, 0, 1},
-            {0, 1, 0, 1, 0},
-    };
-    imagen esperada = {
-            { 0, 0, 0, 0, 1, 1 },
-            { 0, 1, 0, 1, 1, 1 },
-            { 0, 1, 1, 1, 1, 1 },
-            { 0, 0, 1, 1, 1, 0 },
-            { 0, 0, 0, 1, 0, 0 },
-            { 0, 0, 0, 0, 0, 0 },
-            { 1, 1, 0, 0, 0, 1 },
-};
-
-cerrarForma(A,B);
-
-EXPECT_EQ(esperada, A);
-}
-
 TEST(cerrarFormaTest, cierreConElementoSinCentroActivadoYConDosPixelesActivados) {
     imagen A = {
             {0, 0, 0, 0, 0},
@@ -56,15 +24,46 @@ TEST(cerrarFormaTest, cierreConElementoSinCentroActivadoYConDosPixelesActivados)
             {0, 1, 0},
     };
     imagen esperada = {
-            { 0, 0, 0, 0, 1, 1 },
-            { 0, 1, 0, 1, 1, 1 },
-            { 0, 1, 1, 1, 1, 1 },
-            { 0, 0, 1, 1, 1, 0 },
-            { 0, 0, 0, 1, 0, 0 },
-            { 0, 0, 0, 0, 0, 0 },
-            { 1, 1, 0, 0, 0, 1 },
+            { 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0 },
+            { 0, 0, 1, 0, 0 },
+            { 0, 0, 0, 0, 0 },
+            { 0, 0, 1, 0, 0 },
+            { 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0 }
     };
+    cerrarForma(A,B);
 
+    EXPECT_EQ(esperada, A);
+}
+TEST(cerrarFormaTest, soloUnPixelPrendidoConElemSinCentro) {
+    imagen A = {
+            {0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0},
+            {0, 0, 1, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0},
+    };
+    imagen B = {
+            {0, 1, 0, 1, 0},
+            {1, 0, 1, 0, 1},
+            {0, 1, 0, 1, 0},
+            {1, 0, 1, 0, 1},
+            {0, 1, 0, 1, 0},
+    };
+    imagen esperada = {
+            { 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0 },
+            { 1, 0, 1, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0 }
+    };
     cerrarForma(A,B);
 
     EXPECT_EQ(esperada, A);
