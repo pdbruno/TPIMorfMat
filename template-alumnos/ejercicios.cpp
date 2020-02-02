@@ -12,7 +12,7 @@ bool esImagenValida(const imagen& A) {
 // Ejercicio 2
 
 bool sonPixelesConectados(const imagen& A, const pixel& p, const pixel& q, int k) {
-    return pixelValidoEncendido(A, p) && pixelValidoEncendido(A, q) && sonPixelesConectadosViniendoDe(A, p, q, k, {});
+    return (pixelValidoEncendido(A, p) && pixelValidoEncendido(A, q) && sonPixelesConectadosViniendoDe(A, p, q, k, {}));
 }
 
 // Ejercicio 3
