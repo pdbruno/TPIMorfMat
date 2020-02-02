@@ -18,7 +18,7 @@ bool sonPixelesConectados(const imagen& A, const pixel& p, const pixel& q, int k
 // Ejercicio 3
 
 float devolverPromedioAreas(const imagen &A, int k){
-	float prom = -1.0;
+    float prom = -1.0;
     vector<sqPixel> regionesConRepetidos;
     vector<sqPixel> regionesSinRepetidos;
     sqPixel region;
